@@ -1,11 +1,28 @@
+import Constants from 'expo-constants'
+
+const getExtraVar = (key: string): string | undefined => {
+  return Constants.expoConfig?.extra?.[key] as string | undefined
+}
+
 const firebaseConfig = {
-  apiKey: 'AIzaSyARx-qtTos_SfGvyBFb8Shhkbwoi1sYl_A',
-  authDomain: 'chore-champ-app.firebaseapp.com',
-  projectId: 'chore-champ-app',
-  storageBucket: 'chore-champ-app.firebasestorage.app',
-  messagingSenderId: '789270204218',
-  appId: '1:789270204218:web:61e66f1b1e40e807824a03',
-  measurementId: 'G-38WMYDTBKZ',
+  apiKey: getExtraVar('firebaseApiKey'),
+  authDomain: getExtraVar('firebaseAuthDomain'),
+  projectId: getExtraVar('firebaseProjectId'),
+  storageBucket: getExtraVar('firebaseStorageBucket'),
+  messagingSenderId: getExtraVar('firebaseMessagingSenderId'),
+  appId: getExtraVar('firebaseAppId'),
+  measurementId: getExtraVar('firebaseMeasurementId'),
+}
+
+if (
+  !firebaseConfig.apiKey ||
+  !firebaseConfig.authDomain ||
+  !firebaseConfig.projectId ||
+  !firebaseConfig.appId
+) {
+  console.error(
+    'Firebase configuration is missing. Ensure environment variables are set and accessible via Constants.expoConfig.extra in app.config.js'
+  )
 }
 
 export default firebaseConfig
