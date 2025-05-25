@@ -2,8 +2,10 @@ import { config as gluestackConfig } from '@gluestack-ui/config';
 import { Center, GluestackUIProvider, Spinner, Text } from '@gluestack-ui/themed';
 import { Slot } from 'expo-router';
 import React, { useEffect, useState } from 'react';
+import { Provider as ReduxProvider } from 'react-redux';
 import "../global.css";
 import { initializeFirebaseApp } from '../src/services/firebaseService';
+import { store } from '../src/store';
 
 export default function RootLayout() {
   const [isAppReady, setIsAppReady] = useState(false);
@@ -56,8 +58,10 @@ export default function RootLayout() {
   }
 
   return (
-    <GluestackUIProvider config={gluestackConfig}>
-      <Slot />
-    </GluestackUIProvider>
+    <ReduxProvider store={store}>
+      <GluestackUIProvider config={gluestackConfig}>
+        <Slot />
+      </GluestackUIProvider>
+    </ReduxProvider>
   );
 }
