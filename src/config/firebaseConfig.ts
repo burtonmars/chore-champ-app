@@ -1,3 +1,4 @@
+// src/config/firebaseConfig.ts
 import Constants from 'expo-constants'
 
 const getExtraVar = (key: string): string | undefined => {
@@ -12,17 +13,6 @@ const firebaseConfig = {
   messagingSenderId: getExtraVar('firebaseMessagingSenderId'),
   appId: getExtraVar('firebaseAppId'),
   measurementId: getExtraVar('firebaseMeasurementId'),
-}
-
-if (
-  !firebaseConfig.apiKey ||
-  !firebaseConfig.authDomain ||
-  !firebaseConfig.projectId ||
-  !firebaseConfig.appId
-) {
-  console.error(
-    'Firebase configuration is missing. Ensure environment variables are set and accessible via Constants.expoConfig.extra in app.config.js'
-  )
 }
 
 export default firebaseConfig
