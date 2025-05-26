@@ -1,4 +1,3 @@
-// src/config/firebaseConfig.ts
 import Constants from 'expo-constants'
 
 const getExtraVar = (key: string): string | undefined => {

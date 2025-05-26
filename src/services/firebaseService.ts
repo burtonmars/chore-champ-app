@@ -48,10 +48,12 @@ export function initializeFirebaseApp(): void {
 
     db = getFirestore(app)
 
-    firebaseInitializedSuccessfully = true
-    console.log(
-      'Firebase initialized successfully (App, Auth with persistence, Firestore).'
-    )
+    if (auth && db) {
+      firebaseInitializedSuccessfully = true
+      console.log(
+        'Firebase initialized successfully (App, Auth with persistence, Firestore).'
+      )
+    }
   } catch (error) {
     console.error('Firebase initialization error:', error)
     app = null
